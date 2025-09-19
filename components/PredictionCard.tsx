@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { formatTimeRemaining, formatCurrency } from '../lib/utils';
 import { Clock, Users, TrendingUp, Zap } from 'lucide-react';
 import { PredictionOptionButton } from './PredictionOptionButton';
@@ -25,25 +25,66 @@ export function PredictionCard({ prediction }: PredictionCardProps) {
     if (!selectedOption || !wagerAmount || isPlacingWager) return;
 
     setIsPlacingWager(true);
-    
-    // Simulate transaction
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsPlacingWager(false);
-    setSelectedOption(null);
-    setWagerAmount('');
-    
-    // Show success message (in a real app, this would be a toast)
-    alert('Wager placed successfully!');
+
+    try {
+      const response = await fetch('/api/wagers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          predictionId: prediction.predictionId,
+          optionId: selectedOption,
+          amount: parseFloat(wagerAmount),
+          userAddress: '0x1234567890123456789012345678901234567890', // Mock address
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Show success message
+        alert(`Wager placed successfully! TX: ${data.data.txHash}`);
+        setSelectedOption(null);
+        setWagerAmount('');
+        // In a real app, you'd refresh the prediction data here
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error('Wager error:', error);
+      alert('Failed to place wager. Please try again.');
+    } finally {
+      setIsPlacingWager(false);
+    }
   };
 
-  const mockAIInsight = {
-    predictionId: prediction.predictionId,
-    confidence: 75,
-    reasoning: 'Based on historical data and current trends',
-    suggestedOption: prediction.options[0].id,
-    type: 'positive' as const
-  };
+  const [aiInsight, setAiInsight] = useState<any>(null);
+  const [loadingInsight, setLoadingInsight] = useState(true);
+
+  useEffect(() => {
+    const fetchAIInsight = async () => {
+      try {
+        const response = await fetch(`/api/ai-insights?predictionId=${prediction.predictionId}`);
+        const data = await response.json();
+        if (data.success) {
+          setAiInsight({
+            predictionId: data.data.predictionId,
+            confidence: data.data.confidence,
+            reasoning: data.data.reasoning,
+            suggestedOption: data.data.recommendedOption,
+            type: data.data.confidence > 80 ? 'positive' : data.data.confidence > 60 ? 'neutral' : 'negative',
+          });
+        }
+      } catch (error) {
+        console.error('Failed to fetch AI insight:', error);
+      } finally {
+        setLoadingInsight(false);
+      }
+    };
+
+    fetchAIInsight();
+  }, [prediction.predictionId]);
 
   return (
     <div className="card space-y-4">
@@ -87,7 +128,14 @@ export function PredictionCard({ prediction }: PredictionCardProps) {
       </div>
 
       {/* AI Insight */}
-      <AIInsightBubble insight={mockAIInsight} />
+      {loadingInsight ? (
+        <div className="flex items-center space-x-3 p-3 rounded-md border border-accent/20 bg-accent/10">
+          <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-accent">Analyzing prediction data...</span>
+        </div>
+      ) : aiInsight ? (
+        <AIInsightBubble insight={aiInsight} />
+      ) : null}
 
       {/* Options */}
       <div className="space-y-2">

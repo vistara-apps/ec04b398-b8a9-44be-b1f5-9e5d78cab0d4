@@ -30,6 +30,9 @@
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2",
-    "pino-pretty": "^10.2.0"
+    "pino-pretty": "^10.2.0",
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.5",
+    "hardhat": "^2.19.4"
   }
 }
