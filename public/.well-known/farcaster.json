@@ -1,0 +1,30 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "frame": {
+    "version": "1",
+    "name": "StreamPredict",
+    "subtitle": "Built with Zara",
+    "description": "StreamPredict is a Base Mini App built with Zara.",
+    "iconUrl": "https://0co.to/images/zara-2.png",
+    "homeUrl": "https://ec04b398b8a944beb1f59e5d78cab0d4-o3re.vercel.app",
+    "splashImageUrl": "https://ec04b398b8a944beb1f59e5d78cab0d4-o3re.vercel.app/splash.png",
+    "splashBackgroundColor": "#000000",
+    "heroImageUrl": "https://ec04b398b8a944beb1f59e5d78cab0d4-o3re.vercel.app/image.png",
+    "tagline": "StreamPredict",
+    "screenshotUrls": [
+      "https://ec04b398b8a944beb1f59e5d78cab0d4-o3re.vercel.app/screenshot.png",
+      "https://ec04b398b8a944beb1f59e5d78cab0d4-o3re.vercel.app/screenshot.png"
+    ],
+    "primaryCategory": "social",
+    "tags": [
+      "base",
+      "miniapp",
+      "onchainkit"
+    ],
+    "webhookUrl": "https://ec04b398b8a944beb1f59e5d78cab0d4-o3re.vercel.app/api/webhook"
+  }
+}
