@@ -30,11 +30,11 @@ export function StreamAnalytics() {
     <div className="space-y-6">
       <div className="card">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-text-primary">Stream Analytics</h3>
+          <h3 className="text-lg font-semibold text-white">Stream Analytics</h3>
           <select
             value={timeRange}
             onChange={(e) => setTimeRange(e.target.value as any)}
-            className="bg-surface border border-gray-700 rounded-md px-3 py-1 text-text-primary text-sm"
+            className="bg-gray-800 border border-gray-700 rounded-md px-3 py-1 text-white text-sm"
           >
             <option value="24h">24 Hours</option>
             <option value="7d">7 Days</option>
@@ -44,28 +44,28 @@ export function StreamAnalytics() {
 
         {/* Key Metrics */}
         <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="text-center p-3 bg-bg rounded-md">
+          <div className="text-center p-3 bg-gray-900 rounded-md">
             <div className="flex items-center justify-center space-x-1 mb-2">
-              <Users className="w-4 h-4 text-accent" />
-              <span className="text-sm text-text-muted">Peak Viewers</span>
+              <Users className="w-4 h-4 text-green-400" />
+              <span className="text-sm text-gray-400">Peak Viewers</span>
             </div>
-            <p className="text-xl font-bold text-text-primary">
+            <p className="text-xl font-bold text-white">
               {Math.max(...chartData.map(d => d.viewers)).toLocaleString()}
             </p>
-            <p className={`text-xs ${viewerChange >= 0 ? 'text-success' : 'text-error'}`}>
+            <p className={`text-xs ${viewerChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
               {viewerChange >= 0 ? '+' : ''}{viewerChange.toFixed(1)}%
             </p>
           </div>
 
-          <div className="text-center p-3 bg-bg rounded-md">
+          <div className="text-center p-3 bg-gray-900 rounded-md">
             <div className="flex items-center justify-center space-x-1 mb-2">
-              <MessageCircle className="w-4 h-4 text-warning" />
-              <span className="text-sm text-text-muted">Chat Activity</span>
+              <MessageCircle className="w-4 h-4 text-yellow-400" />
+              <span className="text-sm text-gray-400">Chat Activity</span>
             </div>
-            <p className="text-xl font-bold text-text-primary">
+            <p className="text-xl font-bold text-white">
               {Math.max(...chartData.map(d => d.chatMessages)).toLocaleString()}
             </p>
-            <p className={`text-xs ${chatChange >= 0 ? 'text-success' : 'text-error'}`}>
+            <p className={`text-xs ${chatChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
               {chatChange >= 0 ? '+' : ''}{chatChange.toFixed(1)}%
             </p>
           </div>
@@ -77,8 +77,8 @@ export function StreamAnalytics() {
             onClick={() => setSelectedMetric('viewers')}
             className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
               selectedMetric === 'viewers'
-                ? 'bg-primary text-white'
-                : 'bg-surface text-text-muted hover:text-text-primary'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-800 text-gray-400 hover:text-white'
             }`}
           >
             Viewers
@@ -87,8 +87,8 @@ export function StreamAnalytics() {
             onClick={() => setSelectedMetric('chatMessages')}
             className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
               selectedMetric === 'chatMessages'
-                ? 'bg-primary text-white'
-                : 'bg-surface text-text-muted hover:text-text-primary'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-800 text-gray-400 hover:text-white'
             }`}
           >
             Chat Messages
@@ -133,23 +133,23 @@ export function StreamAnalytics() {
 
       {/* Quick Stats */}
       <div className="card">
-        <h3 className="text-lg font-semibold text-text-primary mb-4">Quick Stats</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Quick Stats</h3>
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-text-muted">Average Stream Duration</span>
-            <span className="text-text-primary font-medium">6.2 hours</span>
+            <span className="text-gray-400">Average Stream Duration</span>
+            <span className="text-white font-medium">6.2 hours</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-text-muted">Most Played Game</span>
-            <span className="text-text-primary font-medium">Fortnite</span>
+            <span className="text-gray-400">Most Played Game</span>
+            <span className="text-white font-medium">Fortnite</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-text-muted">Peak Hour</span>
-            <span className="text-text-primary font-medium">8-9 PM</span>
+            <span className="text-gray-400">Peak Hour</span>
+            <span className="text-white font-medium">8-9 PM</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-text-muted">Engagement Rate</span>
-            <span className="text-success font-medium">94.2%</span>
+            <span className="text-gray-400">Engagement Rate</span>
+            <span className="text-green-400 font-medium">94.2%</span>
           </div>
         </div>
       </div>

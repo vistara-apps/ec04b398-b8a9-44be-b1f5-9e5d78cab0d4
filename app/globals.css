@@ -6,11 +6,11 @@
   * {
     @apply border-gray-700;
   }
-  
+
   body {
-    @apply bg-bg text-text-primary antialiased;
+    @apply bg-gray-900 text-white antialiased;
   }
-  
+
   html {
     @apply scroll-smooth;
   }
@@ -18,41 +18,41 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary hover:bg-primary/90 text-white font-medium px-4 py-2 rounded-md transition-colors duration-200;
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md transition-colors duration-200;
   }
-  
+
   .btn-secondary {
-    @apply bg-surface hover:bg-surface-light text-text-primary border border-gray-700 font-medium px-4 py-2 rounded-md transition-colors duration-200;
+    @apply bg-gray-800 hover:bg-gray-700 text-white border border-gray-700 font-medium px-4 py-2 rounded-md transition-colors duration-200;
   }
-  
+
   .card {
-    @apply bg-surface border border-gray-700 rounded-lg p-4 shadow-card;
+    @apply bg-gray-800 border border-gray-700 rounded-lg p-4 shadow-lg;
   }
-  
+
   .input {
-    @apply bg-surface border border-gray-700 rounded-md px-3 py-2 text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    @apply bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent;
   }
-  
+
   .stat-badge {
     @apply inline-flex items-center px-2 py-1 rounded-md text-xs font-medium;
   }
-  
+
   .stat-badge-viewers {
-    @apply bg-accent/20 text-accent;
+    @apply bg-green-500/20 text-green-400;
   }
-  
+
   .stat-badge-chat {
-    @apply bg-warning/20 text-warning;
+    @apply bg-yellow-500/20 text-yellow-400;
   }
-  
+
   .prediction-option {
-    @apply bg-surface hover:bg-surface-light border border-gray-700 rounded-md p-3 cursor-pointer transition-all duration-200;
+    @apply bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-md p-3 cursor-pointer transition-all duration-200;
   }
-  
+
   .prediction-option-selected {
-    @apply bg-primary/20 border-primary text-primary;
+    @apply bg-blue-600/20 border-blue-600 text-blue-400;
   }
-  
+
   .prediction-option-disabled {
     @apply opacity-50 cursor-not-allowed;
   }
