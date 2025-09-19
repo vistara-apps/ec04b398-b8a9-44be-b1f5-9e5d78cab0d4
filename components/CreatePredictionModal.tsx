@@ -34,26 +34,47 @@ export function CreatePredictionModal({ isOpen, onClose }: CreatePredictionModal
     if (!formData.streamerId || !formData.prompt || options.length < 2) return;
 
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    onClose();
-    
-    // Reset form
-    setFormData({
-      streamerId: '',
-      prompt: '',
-      category: '',
-      duration: '4',
-    });
-    setOptions([
-      { id: '1', text: 'Yes' },
-      { id: '2', text: 'No' }
-    ]);
-    
-    alert('Prediction market created successfully!');
+
+    try {
+      const response = await fetch('/api/predictions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: formData.prompt,
+          options: options.map(opt => opt.text),
+          duration: parseInt(formData.duration) * 3600, // Convert hours to seconds
+          streamerId: formData.streamerId,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('Prediction market created successfully!');
+        onClose();
+
+        // Reset form
+        setFormData({
+          streamerId: '',
+          prompt: '',
+          category: '',
+          duration: '4',
+        });
+        setOptions([
+          { id: '1', text: 'Yes' },
+          { id: '2', text: 'No' }
+        ]);
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error('Create prediction error:', error);
+      alert('Failed to create prediction. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const addOption = () => {
