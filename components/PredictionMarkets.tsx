@@ -20,14 +20,14 @@ export function PredictionMarkets() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-text-primary">Active Predictions</h2>
+        <h2 className="text-2xl font-bold text-white">Active Predictions</h2>
         <div className="flex items-center space-x-3">
           <div className="flex items-center space-x-2">
-            <Filter className="w-4 h-4 text-text-muted" />
+            <Filter className="w-4 h-4 text-gray-400" />
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value as any)}
-              className="bg-surface border border-gray-700 rounded-md px-3 py-1 text-text-primary text-sm"
+              className="bg-gray-800 border border-gray-700 rounded-md px-3 py-1 text-white text-sm"
             >
               <option value="all">All</option>
               <option value="active">Active</option>
@@ -55,7 +55,7 @@ export function PredictionMarkets() {
 
       {filteredPredictions.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-text-muted">No predictions found for the selected filter.</p>
+          <p className="text-gray-400">No predictions found for the selected filter.</p>
         </div>
       )}
 

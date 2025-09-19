@@ -5,15 +5,15 @@ import { Header } from '../components/Header';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-bg">
+    <div className="min-h-screen bg-gray-900">
       <Header />
-      
+
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-text-primary mb-2">
+          <h1 className="text-4xl font-bold text-white mb-2">
             StreamPredict
           </h1>
-          <p className="text-xl text-text-secondary">
+          <p className="text-xl text-gray-300">
             Real-time Prediction Markets
           </p>
         </div>
